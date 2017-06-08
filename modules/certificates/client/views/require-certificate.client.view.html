@@ -1,0 +1,60 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.certificate._id ? 'Editar solicitud' : 'Solicitud de certificado'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.certificateForm" class="form-horizontal" ng-submit="vm.save(vm.form.certificateForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Nombre de la organización</label>
+          <input name="title" type="text" ng-model="vm.certificate.organizationName" id="title" class="form-control" placeholder="Indique el nombre de la organización enque trabajó aquí."
+            required>
+          <div ng-messages="vm.form.certificateForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El nombre de la organización es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="jobtitle">Cargo desempeñado</label>
+          <input name="jobtitle" type="text" data-ng-model="vm.certificate.jobTitle" id="jobtitle" class="form-control" placeholder="Indique el nombre del cargo desempeñado aquí."
+            required>
+          <div ng-messages="vm.form.certificateForm.jobtitle.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">El nombre del cargo desempeñado es requerido.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="jobdescription">Descripción cargo</label>
+          <textarea name="jobdescription" data-ng-model="vm.certificate.jobdescription" id="jobdescription" class="form-control" cols="30"
+            rows="10" placeholder="Describa el cargo desempeñado aquí." required></textarea>
+          <div ng-messages="vm.form.certificateForm.jobdescription.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">La descripción del cargo desempeñado es requerido.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="control-label" for="startdate">Fecha inicio</label>
+              <input type="date" min="2000-01-01T00:00:00" max="2017-12-31T00:00:00" name="startdate" data-ng-model="vm.certificate.startDate"
+                id="startdate" class="form-control" placeholder="startdate">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="control-label" for="enddate">Fecha fin</label>
+              <input type="date" min="2000-01-01T00:00:00" max="2017-12-31T00:00:00" name="enddate" data-ng-model="vm.certificate.endDate"
+                id="enddate" class="form-control" placeholder="enddate">
+            </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.article._id ? 'Update' : 'Solicitar'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

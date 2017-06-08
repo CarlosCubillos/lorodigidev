@@ -56,6 +56,15 @@
           ignoreState: true,
           pageTitle: 'Forbidden'
         }
-      });
+      })
+      .state('privacypolicy', {
+        url: '/privacypolicy',
+        templateUrl: 'modules/core/client/views/privacypolicy.client.view.html',
+        data: {
+          ignoreState: true,
+          pageTitle: 'Política de privacidad LoroDigi'
+        }
+      })
+      ;
   }
 }());
