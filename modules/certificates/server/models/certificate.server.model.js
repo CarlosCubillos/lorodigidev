@@ -30,8 +30,16 @@ var CertificateSchema = new Schema({
     type: String,
     default: ''
   },
+  jobTitleAsSuggestion: {
+    type: Boolean,
+    default: ''
+  },
   jobDescription: {
     type: String,
+    default: ''
+  },
+  jobDescriptionAsSuggestion: {
+    type: Boolean,
     default: ''
   },
   jobDescriptionConfirmed: {
@@ -54,17 +62,13 @@ var CertificateSchema = new Schema({
     type: Date,
     default: ''
   },
-  jobDescription: {
-    type: String,
-    default: ''
-  },
-  jobDescriptionConfirmed: {
-    type: String,
-    default: ''
-  },
   state: {
     type: String,
     default: ''
+  },
+  termsAndConditionsAcceptance: {
+    type: Boolean,
+    default: false
   },
   user: {
     type: Schema.ObjectId,

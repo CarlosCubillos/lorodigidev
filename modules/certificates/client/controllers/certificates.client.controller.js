@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.certificate = certificate;
+    vm.certificate.termsAndConditionsAcceptance = false;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
@@ -19,7 +20,7 @@
 
     // Remove existing Article
     function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
+      if ($window.confirm('Estás seguro de querer borrar el certificado?')) {
         vm.certificate.$remove($state.go('articles.list'));
       }
     }
@@ -39,7 +40,7 @@
       }
 
       function successCallback(res) {
-        $state.go('certificate.view', {
+        $state.go('certificates.confirmCertificateRequest', {
           certificateId: res._id
         });
       }

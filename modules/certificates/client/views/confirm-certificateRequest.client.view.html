@@ -1,0 +1,72 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.certificate.title"></h1>
+  </div>
+  <small>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      
+            <div class="row">
+        <div class="col-sm-4"><h4></h4></div>
+        <div class="col-sm-8"></div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4">Id solicitud</div>
+          <div class="col-sm-8"><h4><span class = "label label-default">{{vm.certificate._id}}</span></h4></div>
+      </div>
+            <div class="row">
+          <div class="col-sm-4">Fecha</div>
+          <div class="col-sm-8"><h4>{{vm.certificate.created}}</h4></div>
+      </div>
+                  <div class="row">
+          <div class="col-sm-4">Organización</div>
+          <div class="col-sm-8"><h4>{{vm.certificate.organizationName}}</h4></div>
+      </div>
+                        <div class="row">
+          <div class="col-sm-4">Estado</div>
+          <div class="col-sm-8"><h4>{{vm.certificate.state}}</h4></div>
+      </div>
+            </div>
+
+    </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4"><h4>¿Qué sucede ahora?</h4></div>
+        <div class="col-sm-8"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"><h1>1</h1></div>
+        <div class="col-sm-6"><h4>LoroDigi realiza la solicitud a la organización. En caso de que no se encuentre en nuestra base de datos y que no tengas la información de contacto nosotros la investigamos.</h4></div>
+      <div class="col-sm-4"><h4>Tiempo estimado: 3 días</h4></div>
+      </div>
+            <div class="row">
+        <div class="col-sm-2"><h1>2</h1></div>
+        <div class="col-sm-6"><h4>Si la organización no responde a la solicitud de manera digital podemos proceder a hacer la solicitud físicamente si lo autorizas.</h4></div>
+        <div class="col-sm-4"><h4>Tiempo estimado: 3 días</h4></div>
+      </div>
+                  <div class="row">
+        <div class="col-sm-2"><h1>3</h1></div>
+        <div class="col-sm-6"><h4>Una vez obtenida la solicitud LoroDigi la firma digitalmente para garantizar su autenticidad y genera un Certificado Digital Laboral (CDL).</h4></div>
+        <div class="col-sm-4"><h4>Tiempo estimado: Inmediato</h4></div>
+      </div>
+                        <div class="row">
+        <div class="col-sm-2"><h1>4</h1></div>
+        <div class="col-sm-6"><h4>Desde ese momento cada vez que necesites hacer llegar tu Certificado Digital Laboral (CDL) a un empleador únicamente debes acceder al sistema y enviar el Certificado Digital Laboral (CDL). Cada vez que envíes el certificado a una organización se genera un costo de $3.250 pesos, ¡haz los cálculos de cuánto te ahorras!
+</h4></div>
+<div class="col-sm-4"><h4>Tiempo estimado: Inmediato</h4></div>
+      </div>
+    </div>
+    
+  </div>
+
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.certificate.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.certificate.user" ng-bind="vm.certificate.user.displayName"></span>
+      <span ng-if="!vm.certificate.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.certificate.content"></p>
+</section>

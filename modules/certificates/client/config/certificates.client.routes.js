@@ -35,6 +35,18 @@
           roles: ['user', 'admin'],
           pageTitle: 'Solicitar certificado'
         }
+      })
+      .state('certificates.confirmCertificateRequest', {
+        url: '/confirmCertificateRequest/:certificateId',
+        templateUrl: '/modules/certificates/client/views/confirm-certificateRequest.client.view.html',
+        controller: 'CertificatesController',
+        controllerAs: 'vm',
+        resolve: {
+          certificateResolve: getCertificate
+        },
+        data: {
+          pageTitle: 'Confirmación de Solicitud'
+        }
       });
   }
 
@@ -46,7 +58,7 @@
     }).$promise;
   }
 
-    newCertificate.$inject = ['CertificatesService'];
+  newCertificate.$inject = ['CertificatesService'];
 
   function newCertificate(CertificatesService) {
     return new CertificatesService();
