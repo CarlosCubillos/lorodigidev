@@ -14,6 +14,7 @@ var path = require('path'),
 exports.create = function (req, res) {
   var certificate = new Certificate(req.body);
   certificate.user = req.user;
+  certificate.state = "Solicitado";
 
   certificate.save(function (err) {
     if (err) {
