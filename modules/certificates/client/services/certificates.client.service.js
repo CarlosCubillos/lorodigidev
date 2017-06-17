@@ -19,7 +19,7 @@
     angular.extend(Certificate.prototype, {
       createOrUpdate: function () {
         var certificate = this;
-        return createOrUpdate(article);
+        return createOrUpdate(certificate);
       }
     });
 
