@@ -28,46 +28,49 @@ exports.create = function (req, res) {
 };
 
 exports.filterByName = function (req, res) {
-  Organization.aggregate(
-    [
-      // Match first to reduce documents to those where the array contains the match
-      {
-        "$match": {
-          "organizationName": { "$regex": req.params.name }
+  if (req.params.name != "*")
+    Organization.aggregate(
+      [
+        // Match first to reduce documents to those where the array contains the match
+        {
+          "$match": {
+            "organizationName": { "$regex": req.params.name, $options: "i" } //"/^" + req.params.name + "/i" 
+          }
+        },
+
+        // Unwind to "de-normalize" the document per array element
+        { "$unwind": "$organizationName" },
+
+        // Now filter those document for the elements that match
+        {
+          "$match": {
+            "organizationName": { "$regex": req.params.name, $options: "i" }
+          }
+        },
+
+        // Group back as an array with only the matching elements
+        {
+          "$group": {
+            "_id": "$_id",
+            "organizationName": { "$first": "$organizationName" },
+            "organizationId": { "$push": "$organizationId" }
+          }
         }
-      },
-
-      // Unwind to "de-normalize" the document per array element
-      { "$unwind": "$organizationName" },
-
-      // Now filter those document for the elements that match
-      {
-        "$match": {
-          "organizationName": { "$regex": req.params.name }
-        }
-      },
-
-      // Group back as an array with only the matching elements
-      {
-        "$group": {
-          "_id": "$_id",
-          "organizationName": { "$first": "$organizationName" },
-          "organizationId": { "$push": "$organizationId" }
-          // "organizationId": { "$push": "$organizationId" }
+      ],
+      function (err, orgs) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(orgs);
         }
       }
-    ],
-    function (err, results) {
-      if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } else {
-        res.json(results);
-      }
-    }
-  )
-
+    )
+  else
+    Organization.find({}).select('organizationName organizationId').sort('organizationName').limit(10).exec(function (err, orgs) {
+      res.json(orgs);
+    });
 
   // Organization.find().sort('-created').populate('user', 'displayName').exec(function (err, organizations) {
   //   if (err) {

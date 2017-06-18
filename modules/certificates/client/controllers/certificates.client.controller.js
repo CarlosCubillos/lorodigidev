@@ -20,7 +20,7 @@
 
     vm.states = loadAll()
     vm.mdAutocompleteIsDisabled = false;
-    vm.mdAutocompleteNoCache = true;
+    vm.mdAutocompleteNoCache = false;
 
     vm.mdAutocompleteQuerySearch = mdAutocompleteQuerySearch;
     vm.mdAutocompleteSelectedItemChange = mdAutocompleteSelectedItemChange;
@@ -59,10 +59,11 @@
     }
 
     function mdAutocompleteQuerySearch(query) {
+      if (query == "")
+        query = "*";
 
       return OrganizationsService.getThemAll(query).$promise;
 
-      
 
       // var results = vm.states.filter(createFilterFor(query));
 
@@ -72,14 +73,14 @@
 
       // OrganizationsService.query({ name: query }, function (data) {
 
-        // var results = data.map(function (organization) {
-        //   return {
-        //     value: organization.organizationName,
-        //     display: organization.organizationName
-        //   }
-        // });
+      // var results = data.map(function (organization) {
+      //   return {
+      //     value: organization.organizationName,
+      //     display: organization.organizationName
+      //   }
+      // });
 
-        // return results;
+      // return results;
 
       // }, function (err) {
       //   //your code

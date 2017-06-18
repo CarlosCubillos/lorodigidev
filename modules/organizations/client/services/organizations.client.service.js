@@ -19,7 +19,7 @@
       });
 
     self.getThemAll = function (query) {
-      return resource.query({ name: query });
+        return resource.query({ name: angular.lowercase(query) });
     }
 
     return {

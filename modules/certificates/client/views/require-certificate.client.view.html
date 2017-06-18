@@ -22,13 +22,13 @@
 
                   <md-content class="md-padding">
                     <!--<form ng-submit="$event.preventDefault()">-->
-                    <md-autocomplete required md-input-name="autocompleteOrg" ng-disabled="vm.mdAutocompleteIsDisabled" md-no-cache="vm.mdAutocompleteNoCache"
+                    <md-autocomplete required  ng-disabled="vm.mdAutocompleteIsDisabled" md-no-cache="vm.mdAutocompleteNoCache"
                       md-selected-item="vm.mdAutocompleteSelectedItem" md-search-text-change="vm.mdAutocompleteSearchTextChange(vm.mdAutocompleteSearchText)"
                       md-search-text="vm.mdAutocompleteSearchText" md-selected-item-change="vm.mdAutocompleteSelectedItemChange(item)"
                       md-items="item in vm.mdAutocompleteQuerySearch(vm.mdAutocompleteSearchText)" md-item-text="item.organizationName"
                       md-min-length="0" placeholder="¿Cuál es el nombre de la organización que buscas?" md-clear-button="true">
                       <md-item-template>
-                        <span md-highlight-text="vm.mdAutocompleteSearchText" md-highlight-flags="^i">{{item.organizationName + "- NIT:" + item.organizationId}}</span>
+                        <span md-highlight-text="vm.mdAutocompleteSearchText" md-highlight-flags="^i">{{item.organizationName + " - NIT:" + item.organizationId}}</span>
                       </md-item-template>
                       <md-not-found>
                         No se encontraron resultados para "{{vm.mdAutocompleteSearchText}}".
@@ -37,18 +37,10 @@
                         <div ng-message="required">This field is required</div>
                       </div>
                     </md-autocomplete>
-
-
-
-
                     <br>
 
                     <!--</form>-->
                   </md-content>
-
-
-                  <input name="title" type="text" ng-model="vm.certificate.organizationName" id="title" class="form-control" placeholder="Indique el nombre de la organización enque trabajó aquí."
-                    required>
                   <a href="#">La organización que busco no aparece...</a>
                   <div ng-messages="vm.form.certificateForm.title.$error" role="alert">
                     <p class="help-block error-text" ng-message="required">El nombre de la organización es requerido.</p>
