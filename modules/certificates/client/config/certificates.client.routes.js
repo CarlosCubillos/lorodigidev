@@ -25,7 +25,7 @@
       })
       .state('certificates.require', {
         url: '/require',
-        templateUrl: '/modules/certificates/client/views/require-certificate.client.view.html',
+        templateUrl: '/modules/certificates/client/views/request-certificate.client.view.html',
         controller: 'CertificatesController',
         controllerAs: 'vm',
         resolve: {

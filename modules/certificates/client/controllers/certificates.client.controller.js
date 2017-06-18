@@ -14,11 +14,13 @@
     vm.certificate.termsAndConditionsAcceptance = false;
     vm.authentication = Authentication;
     vm.error = null;
-    vm.form = {};
+    vm.certificateForm = {};
     vm.remove = remove;
     vm.save = save;
 
-    vm.states = loadAll()
+
+    //vm.states = loadAll()
+    vm.organizationFound = false;
     vm.mdAutocompleteIsDisabled = false;
     vm.mdAutocompleteNoCache = false;
 
@@ -35,8 +37,9 @@
 
     // Save Certificat's requirement
     function save(isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.certificateForm');
+
+      $scope.$broadcast('show-errors-check-validity');
+      if (!isValid || !vm.organizationFound) {
         return false;
       }
 
@@ -97,7 +100,12 @@
     }
 
     function mdAutocompleteSelectedItemChange(item) {
-      $log.info('Item changed to ' + JSON.stringify(item));
+      if (item) {
+        vm.organizationFound = true;
+        $log.info('Item changed to ' + JSON.stringify(item));
+      }
+      else
+        vm.organizationFound = false;
     }
 
 

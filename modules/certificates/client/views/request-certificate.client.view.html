@@ -1,0 +1,133 @@
+<section>
+  <div class="page-header">
+  </div>
+  <div class="panel panel-primary" ng-init="vm.init();">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Solicitud de certificado</h1>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <form name="vm.certificateForm" class="form-horizontal" ng-submit="vm.save(vm.certificateForm.$valid);$event.preventDefault()"
+        novalidate>
+
+        <fieldset>
+
+          <!--<md-content>-->
+          <div class="container-fluid">
+
+
+            <div class="form-group" show-errors>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="control-label" for="orgName">Nombre de la organización <I>(Obligatorio)</I></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <!--<form ng-submit="$event.preventDefault()">-->
+                  <md-autocomplete required name="autocomplete" md-input-name="autocomplete" md-no-asterisk="true" md-select-on-match="true"
+                    md-no-cache="vm.mdAutocompleteNoCache" md-selected-item="vm.mdAutocompleteSelectedItem" md-search-text-change="vm.mdAutocompleteSearchTextChange(vm.mdAutocompleteSearchText)"
+                    md-search-text="vm.mdAutocompleteSearchText" md-selected-item-change="vm.mdAutocompleteSelectedItemChange(item)"
+                    md-items="item in vm.mdAutocompleteQuerySearch(vm.mdAutocompleteSearchText)" md-item-text="item.organizationName"
+                    md-min-length="0" placeholder="¿Cuál es el nombre de la organización que buscas?" md-clear-button="false">
+                    <md-item-template>
+                      <span class="item-title">
+                          <strong><span md-highlight-text="vm.mdAutocompleteSearchText" md-highlight-flags="^i">{{item.organizationName}}</span></strong>
+                      <span> {{item.name}} </span> -
+                      <span class="item-metadata">
+                          <span>
+                            NIT: <strong>{{item.organizationId}}</strong>
+                          </span>
+                      </span>
+                    </md-item-template>
+
+                    <md-not-found>
+                      No se encontraron resultados para "{{vm.mdAutocompleteSearchText}}".
+                      <a ng-href="#" ng-click="">Clic aquí si la organización que busca no aparece...</a>
+                    </md-not-found>
+                  </md-autocomplete>
+                  <div ng-messages="vm.certificateForm.autocomplete.$error" role="alert ">
+                    <p class="help-block error-text" ng-message="required">El nombre de la organización es requerido.</p>
+                  </div>
+                  <p class="text-danger" ng-show="!vm.organizationFound && vm.mdAutocompleteSearchText" >
+                    No se encontraron resultados para "{{vm.mdAutocompleteSearchText}}".
+                    <a ng-href="#" ng-click="">Clic aquí si la organización que busca no aparece...</a>
+
+                      </p>
+                </div>
+                <!--</form>-->
+                <div class="col-md-2" align="left">
+                  <span ng-show="vm.organizationFound" class=" glyphicon glyphicon-thumbs-up glyphiconsize"></span>
+                  <span ng-show="!vm.organizationFound" class=" glyphicon glyphicon-remove glyphiconsize"></span>
+                </div>
+              </div>
+            </div>
+
+            <!--</md-content>-->
+
+
+            <div class="row ">
+              <div class="col-md-12 ">
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-sm-6 ">
+                <div class="form-group " show-errors>
+                  <label class="control-label " for="jobtitle ">Cargo desempeñado <i>(Opcional)</i></label>
+                  <input name="jobtitle" type="text " data-ng-model="vm.certificate.jobTitle " id="jobtitle " class="form-control
+                " placeholder="Indique el nombre del cargo desempeñado aquí. ">
+                  <a href="# ">El cargo que busco no aparece...</a>
+                  <div ng-messages="vm.certificateForm.jobtitle.$error" role="alert ">
+                    <p class="help-block error-text " ng-message="required">El nombre del cargo desempeñado es requerido.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <label class="control-label " for="startdate ">Fecha inicio <i>(Opcional)</i></label>
+                  <input type="date " min="2000-01-01T00:00:00 " max="2017-12-31T00:00:00 " name="startdate
+                " data-ng-model="vm.certificate.startDate " id="startdate " class="form-control " placeholder="startdate ">
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <label class="control-label " for="enddate ">Fecha fin <i>(Opcional)</i></label>
+                  <input type="date " min="2000-01-01T00:00:00 " max="2017-12-31T00:00:00 " name="enddate
+                " data-ng-model="vm.certificate.endDate " id="enddate " class="form-control " placeholder="enddate ">
+                </div>
+              </div>
+            </div>
+            <div class="form-group " show-errors>
+              <label class="control-label " for="jobdescription ">Descripción cargo <i>(Opcional)</i></label>
+              <textarea name="jobdescription " data-ng-model="vm.certificate.jobDescription " id="jobdescription
+                " class="form-control " cols="30 " rows="5 " placeholder="Describa el cargo desempeñado aquí. "></textarea>
+              <div ng-messages="vm.certificateForm.jobdescription.$error " role="alert ">
+                <p class="help-block error-text " ng-message="required ">La descripción del cargo desempeñado es requerido.</p>
+              </div>
+            </div>
+
+            <div class="form-group ">
+              <button type="submit " class="btn btn-default " ng-disabled="!(vm.certificate.termsAndConditionsAcceptance) ">Solicitar</button>
+            </div>
+            <div ng-show="vm.error " class="text-danger ">
+              <strong ng-bind="vm.error "></strong>
+            </div>
+        </fieldset>
+        <div class="row ">
+          <div class="col-sm-12 ">
+            <div class="alert alert-danger ">
+              <div class='checkbox'>
+                <label class='help-block'><input name='termsAndConditionsAcceptance' type='checkbox'   ng-model="vm.certificate.termsAndConditionsAcceptance "  value=''> Confirmo que he Leido los Términos y Condiciones...</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
