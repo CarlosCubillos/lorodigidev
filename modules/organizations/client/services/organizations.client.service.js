@@ -8,14 +8,22 @@
   OrganizationsService.$inject = ['$resource'];
 
   function OrganizationsService($resource) {
-   
-    return $resource('api/organizations/:organizationId', {
+
+    var resource = $resource('api/organizations/:organizationId', {
       organizationId: '@_id'
     }, {
-      query: {method: 'GET', params: {name: '@_name'}, isArray: true, url: 'api/organizations/byname/:name'},
-      update: {
-        method: 'PUT'
-      }
-    });
+        query: { method: 'GET', params: { name: '@_name' }, isArray: true, url: 'api/organizations/byname/:name' },
+        update: {
+          method: 'PUT'
+        }
+      });
+
+    self.getThemAll = function (query) {
+      return resource.query({ name: query });
+    }
+
+    return {
+      getThemAll: getThemAll
+    };
   }
 }());

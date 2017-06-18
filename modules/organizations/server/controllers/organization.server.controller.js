@@ -52,7 +52,8 @@ exports.filterByName = function (req, res) {
         "$group": {
           "_id": "$_id",
           "organizationName": { "$first": "$organizationName" },
-          "Id": { "$push": "$organizationId" }
+          "organizationId": { "$push": "$organizationId" }
+          // "organizationId": { "$push": "$organizationId" }
         }
       }
     ],

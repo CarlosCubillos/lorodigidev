@@ -22,17 +22,25 @@
 
                   <md-content class="md-padding">
                     <!--<form ng-submit="$event.preventDefault()">-->
-                    <md-autocomplete ng-disabled="vm.mdAutocompleteIsDisabled" md-no-cache="vm.mdAutocompleteNoCache" md-selected-item="vm.mdAutocompleteSelectedItem"
-                      md-search-text-change="vm.mdAutocompleteSearchTextChange(vm.mdAutocompleteSearchText)" md-search-text="vm.mdAutocompleteSearchText"
-                      md-selected-item-change="vm.mdAutocompleteSelectedItemChange(item)" md-items="item in vm.mdAutocompleteQuerySearch(vm.mdAutocompleteSearchText)"
-                      md-item-text="item.display" md-min-length="0" placeholder="¿Cuál es el nombre de la organización que buscas?">
+                    <md-autocomplete required md-input-name="autocompleteOrg" ng-disabled="vm.mdAutocompleteIsDisabled" md-no-cache="vm.mdAutocompleteNoCache"
+                      md-selected-item="vm.mdAutocompleteSelectedItem" md-search-text-change="vm.mdAutocompleteSearchTextChange(vm.mdAutocompleteSearchText)"
+                      md-search-text="vm.mdAutocompleteSearchText" md-selected-item-change="vm.mdAutocompleteSelectedItemChange(item)"
+                      md-items="item in vm.mdAutocompleteQuerySearch(vm.mdAutocompleteSearchText)" md-item-text="item.organizationName"
+                      md-min-length="0" placeholder="¿Cuál es el nombre de la organización que buscas?" md-clear-button="true">
                       <md-item-template>
-                        <span md-highlight-text="vm.mdAutocompleteSearchText" md-highlight-flags="^i">{{item.display}}</span>
+                        <span md-highlight-text="vm.mdAutocompleteSearchText" md-highlight-flags="^i">{{item.organizationName + "- NIT:" + item.organizationId}}</span>
                       </md-item-template>
                       <md-not-found>
-                        No matches found for "{{vm.mdAutocompleteSearchText}}".
+                        No se encontraron resultados para "{{vm.mdAutocompleteSearchText}}".
                       </md-not-found>
+                      <div ng-messages="vm.form.certificateForm.autocompleteOrg.$error">
+                        <div ng-message="required">This field is required</div>
+                      </div>
                     </md-autocomplete>
+
+
+
+
                     <br>
 
                     <!--</form>-->
