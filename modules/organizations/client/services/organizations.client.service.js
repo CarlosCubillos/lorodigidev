@@ -23,6 +23,7 @@
     }
 
     return {
+      getOrganizationResource: resource,
       getThemAll: getThemAll
     };
   }

@@ -1,0 +1,94 @@
+<section>
+    <div class="page-header">
+    </div>
+    <div class="panel panel-primary" ng-init="vm.init();">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>¿No encuentras la información de la organización donde trabajaste? </h3>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                <form name="vm.reqOrgInfoForm" class="form-vertical" ng-submit="vm.save(vm.reqOrgInfoForm.$valid);" novalidate>
+                    <div class="well well-sm">
+                        Por favor indica qué datos conoces de la organización para que LoroDigi empiece la investigación. El único campo obligatorio
+                        es el <i>Nombre de la organización</i>. Pronto te informaremos los resultados
+                        de nuestra búsqueda.
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group" show-errors>
+                                <label for="organizationName">Nombre de la organización</label>
+                                <input name="organizationName" ng-model="vm.organizationName" type="text" class="form-control" required>
+                                <div ng-messages="vm.reqOrgInfoForm.organizationName.$error" role="alert ">
+                                    <p class="help-block error-text " ng-message="required">El nombre de la organización es requerido.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="organizationId">NIT</label>
+                                <input type="organizationId" class="form-control" id="organizationId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label for="organizationEmail">Dirección</label>
+                                <input type="organizationEmail" class="form-control" id="organizationEmail">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="organizationEmail">Ciudad</label>
+                                <input type="organizationEmail" class="form-control" id="organizationEmail">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="organizationEmail">Correo electrónico</label>
+                                <input type="organizationEmail" class="form-control" id="organizationEmail">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="organizationWebsite">Sitio web</label>
+                                <input type="organizationWebsite" class="form-control" id="organizationWebsite">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="organizationPhone1">Teléfono 1</label>
+                                <input type="organizationPhone1" class="form-control" id="organizationPhone1">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="organizationPhone2">Teléfono 2</label>
+                                <input type="organizationPhone2" class="form-control" id="organizationPhone2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group ">
+                                <button type="submit " class="btn btn-default ">Buscar</button>
+                            </div>
+                            <div ng-show="vm.error " class="text-danger ">
+                                <strong ng-bind="vm.error "></strong>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

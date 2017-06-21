@@ -5,12 +5,12 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-12">
-          <h1>Solicitud de certificado</h1>
+          <h3>Solicitud de certificado</h3>
         </div>
       </div>
     </div>
     <div class="panel-body">
-      <form name="vm.certificateForm" class="form-horizontal" ng-submit="vm.save(vm.certificateForm.$valid);$event.preventDefault()"
+      <form name="vm.certificateForm" class="form-vertical" ng-submit="vm.save(vm.certificateForm.$valid);$event.preventDefault()"
         novalidate>
 
         <fieldset>
@@ -48,6 +48,7 @@
                     <md-not-found>
                       No se encontraron resultados para "{{vm.mdAutocompleteSearchText}}".
                       <a ng-href="#" ng-click="">Clic aquí si la organización que busca no aparece...</a>
+                      <a ui-sref="organizations.requestOrganizationConctactInfo">prueba de state 2</a>
                     </md-not-found>
                   </md-autocomplete>
                   <div ng-messages="vm.certificateForm.autocomplete.$error" role="alert ">
